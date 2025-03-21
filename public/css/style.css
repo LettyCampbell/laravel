@@ -43,3 +43,39 @@ a {
 svg {
     width: 25px;
 }
+
+body {
+    background-color: #D9C6A3;
+    color: #000;
+  }
+  .navbar {
+    background-color: #658DA6;
+  }
+  .navbar-brand, .nav-link {
+    color: #fff !important;
+  }
+  .btn-outline-success {
+    color: #fff;
+    border-color: #fff;
+  }
+  .btn-outline-success:hover {
+    background-color: #6DA0A6;
+    border-color: #6DA0A6;
+  }
+  .card {
+    background-color: #D9C8B4;
+    margin: 10px;
+  }
+  .card-title {
+    color: #000;
+  }
+  .card-text {
+    color: #000;
+  }
+  footer {
+    background-color: #688C82;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 20px;
+  }
