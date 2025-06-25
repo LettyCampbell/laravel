@@ -16,17 +16,19 @@
             <th>Ações</th>
         </tr>
     </thead>
+
     <tbody>
+        @foreach ($anuncios as $anuncio)
+
             <tr>
-                <td>id: 0</td>
-                <td>Marca: Wolksvagem</td>
-                <td>Modelo: Fusca</td>
-                <td>Ano: 1945</td>
-                <td>Placa: ABC-1234</td>
-                <td>Cor: Rosa</td>
+                <td>{{ $veiculo->id }}</td>
+                <td>{{ $veiculo->titulo }}</td>
+                <td>{{ $veiculo->descricao }}</td>
+                <td>{{ $veiculo->preco}}</td>                
+	            <td>{{ $veiculo->data_publicacao }}</td>            
                 <td>
-										<a href="/veiculo/remove/0">Excluir</a>
-                    <a href="/veiculo/update/0">Atualizar</a>
+                    <a href="/anuncio/remove/{{ $anuncio->id }}">Excluir</a>
+                    <a href="{{ route('anuncio-editar', $anuncio->id) }}">Atualizar</a>
                 </td>
             </tr>
         @endforeach

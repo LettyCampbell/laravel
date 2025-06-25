@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use app\Models\ProprietarioModel;
 
 class ProprietarioController extends Controller
 {
@@ -11,12 +12,25 @@ class ProprietarioController extends Controller
     }
 
     function store(Request $dados){
-        $proprietario = new ProprietarioModel();
-        $proprietario->create($dados->all());
+        if ($dados->id == '') {
+            //fazemos ação de create aqui...
+            $proprietario = new ProprietarioModel();
+            $proprietario->create($dados->all());
+        } else {
+            //fazemos a ação de update aqui
+            $proprietario = proprietarioModel::find($dados->id); //localiza o registro
+            $update = $proprietario->update($dados->all()); //atualiza
+        }
+        
+        //recupera todos os registros atualizados
+        $proprietarios = ProprietarioModel::all();
+        
+        //após adicionar ou editar redireciona para a página listar
+        return view('proprietario-listar', ['proprietario'=>$proprietarios]);
     }
 
     function list(){
-        $proprietarios = ProprietarioModel::all()->toArray();
+        $proprietarios = ProprietarioModel::all();
 
         return view('proprietario-listar', ['proprietarios' => $proprietarios]);
     }
@@ -26,7 +40,10 @@ class ProprietarioController extends Controller
         return redirect()->route('proprietario-listar');
     }
 
-    function editar(){
-        
-    }
+    function editar($id){
+        $proprietario = ProprietarioModel::find($id);
+
+return view('proprietario-formulario', ['proprietario' => $proprietario]);
+//vamos enviar o $veiculo que veio do BD para a página veiculo-formulario
+}
 }
